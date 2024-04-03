@@ -104,7 +104,7 @@ int main(void){
     float price = 100;
     int code = 0;
     produto_t actualProduct;
-    produto_t moreExpensive = {0, 0};
+    produto_t mostExpensive = {0, 0};
     produto_t* moreExpensivePointer;
     while (code != 0 || price != 0.0) {
         printf("Cadastrando novo produto...\n");
@@ -117,12 +117,12 @@ int main(void){
         if (code!= 0 && price != 0) {
             actualProduct.preco = price;
             actualProduct.codigo = code;
-            moreExpensive = acha_produto_mais_caro(moreExpensive, actualProduct);
-            moreExpensivePointer = acha_produto_mais_caro_pointer(&moreExpensive, &actualProduct);
+            mostExpensive = acha_produto_mais_caro(mostExpensive, actualProduct);
+            moreExpensivePointer = acha_produto_mais_caro_pointer(&mostExpensive, &actualProduct);
         }
     }
 
-    printf("O produto mais caro é o %d com R$%.2f\n", moreExpensive.codigo, moreExpensive.preco);
+    printf("O produto mais caro é o %d com R$%.2f\n", mostExpensive.codigo, mostExpensive.preco);
     printf("O produto mais caro (pointer) é o %d com R$%.2f\n", moreExpensivePointer->codigo, moreExpensivePointer->preco);
     return 0;
 }
