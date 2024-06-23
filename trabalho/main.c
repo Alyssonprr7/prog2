@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "lista/lista.h"
 
-void insert_sort_arr(int arr[], int size) {
+void selection_sort_arr(int arr[], int size) {
     int min_index, i, j, aux;
 
     for (i = 0; i < size - 1; ++i) { //Até o penúltimo, pois o último já estará ordenado
@@ -35,7 +35,7 @@ int main(void){
     print_arr(arr, arr_size);
     printf("\n");
 
-    insert_sort_arr(arr, arr_size);
+    selection_sort_arr(arr, arr_size);
     printf("array depois do sort = ");
     print_arr(arr, arr_size);
     printf("\n");
