@@ -148,8 +148,6 @@ lista_t *lista_pop( lista_t *l ){
 }
 /////////////////////////////////
 
-
-
 void lista_selection_sort(lista_t* l) {
     if (l == NULL) return;
     lista_t * min, * aux_i, * aux_j;
