@@ -173,3 +173,39 @@ void lista_selection_sort(lista_t* l) {
         aux_i = aux_i->prox;
     }
 }
+
+unsigned int lista_tamanho( lista_t *l ){
+    lista_t * aux = l;
+    int cont = 0;
+    while (aux != NULL){
+        aux = aux->prox;
+        cont++;
+    }
+    return cont;
+}
+
+void lista_bubble_sort (lista_t *l ){
+        if (l == NULL) return;
+        unsigned int n = lista_tamanho(l);
+        lista_t* atual;
+        lista_t* proximo;
+        int aux;
+        // Por que aux é uma variável do tipo inteiro apenas e não lista_t (definido pela struct) ? -> Aux, nesse caso, é apenas uma variável auxiliar que guardará valores para que os inteiros dos nós subsequentes sejam trocados em caso do primeiro nó ser maior que o segundo
+        for (int i = 0; i < n - 1; i++) {
+            atual = l;
+            proximo = l->prox;
+            // Este primeiro for serve como um garantidor de que todos os elementos da lista sejam analisados, ou melhor, percorrer todos os elementos da lista para que, em caso de ser neceeária a comparação, ele seja jogado para o final
+            for (int j = 0; j < n - i - 1; j++)
+                // O "n - i - 1" serve como parâmetro para evitar que sejam feitas comparações sem necessidade, uma vez que a cada pasagem do for acima, o maior número da lista será colocado na posição final, o que evita a necessidade de que seja analisado maisuma vez os valores do loop interno.
+            {
+                if (atual->x > proximo->x) {
+                    aux = atual->x;
+                    atual->x= proximo->x;
+                    proximo->x = aux;
+                }
+                atual = proximo;
+                proximo = proximo->prox;
+            }
+        }
+    }
+// Este segundo for troca elementos de acordo com a condição de maioridade definida no if, isto é, seguindo a premissa do bubble sort, compara elementos subsequentes

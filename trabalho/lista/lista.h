@@ -13,6 +13,7 @@ typedef struct _no_ lista_t;
 // TRABALHO
 /////////////////////////////////
 void lista_selection_sort( lista_t *l);
+void lista_bubble_sort( lista_t *l);
 /////////////////////////////////
 
 // EXERCICIOS
@@ -31,6 +32,7 @@ void lista_termina( lista_t *l );
 
 /////////////////////////////////
 void lista_imprime( lista_t *l );
+unsigned int lista_tamanho( lista_t *l );
 /////////////////////////////////
 
 /////////////////////////////////

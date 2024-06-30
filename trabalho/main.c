@@ -55,7 +55,7 @@ int main(void){
     lista_imprime(l);
     printf("\n");
 
-    lista_selection_sort(l);
+    lista_bubble_sort(l);
     printf("lista apos sort = ");
     lista_imprime(l);
     printf("\n");
