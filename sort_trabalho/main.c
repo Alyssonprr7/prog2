@@ -72,7 +72,7 @@ void testa_lista(){
     lista_termina(l2);
 
     lista_t * l3 = obtem_lista();
-    merge_sort_lista(l3);
+    merge_sort_lista(&l3);
     printf("Lista apos merge sort = ");
     lista_imprime(l3);
     printf("\n");

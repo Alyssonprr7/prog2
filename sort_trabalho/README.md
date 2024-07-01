@@ -7,7 +7,7 @@ Este projeto implementa três algoritmos de ordenação: Selection Sort, Bubble 
 ## Integrantes
 - Alysson Rocha
 - Guilherme Mendes
-- Daniel
+- Daniel Nery
 
 ## Estrutura do Projeto
 O projeto está estruturado da seguinte forma:

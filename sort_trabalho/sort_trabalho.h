@@ -15,7 +15,7 @@ void merge_sort_arr(int *v, unsigned int n);
 /////////////////////////////////
 void bubble_sort_lista(lista_t *l);
 void selection_sort_lista(lista_t* l);
-void merge_sort_lista(lista_t* l);
+void merge_sort_lista(lista_t** l);
 /////////////////////////////////
 
 #endif //SORT_TRABALHO_H

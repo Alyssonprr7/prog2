@@ -143,92 +143,51 @@ void selection_sort_lista(lista_t* l) {
 
 }
 
-lista_t *lista_encontra_no_por_posicao( lista_t *l, int n ){
-    lista_t *aux = l;
-    for (int i = 0; i < n; ++i) {
-        if (aux != NULL) {
-            aux = aux->prox;
-        }
+lista_t *divide(lista_t *l) {
+    lista_t *aux1 = l;
+    lista_t *aux2 = l;
+    lista_t *right;
+
+    if (l==NULL || l->prox==NULL) {
+        return NULL;
     }
 
-    return aux;
+    while (aux1->prox != NULL && aux1->prox->prox != NULL) {
+        aux1 = aux1->prox->prox;
+        aux2 = aux2->prox;
+    }
+    right = aux2->prox;
+    aux2->prox = NULL;
+    return right;
 }
 
-void merge_list(lista_t *left, lista_t *right) {
-    //Caso onde só existe o lado direito e já está ordenado
-    if (left == NULL)  {
-        left = right;
+
+lista_t *merge_lista(lista_t *left, lista_t *right) {
+    if (left == NULL) return right;
+    if (right == NULL) return left;
+
+    lista_t *resultado = NULL;
+
+    if (left->x <= right->x) {
+        resultado = left;
+        resultado->prox = merge_lista(left->prox, right);
+    } else {
+        resultado = right;
+        resultado->prox = merge_lista(left, right->prox);
+    }
+
+    return resultado;
+}
+
+void merge_sort_lista(lista_t **l) {
+    lista_t *left = *l;
+    if (left == NULL || left->prox == NULL) {
         return;
     }
-    //Caso onde só existe o lado esquerdo
-    if (right == NULL) return;
 
-    lista_t * initialValue = NULL;
-    //Obtenção do valor inicial
-    if (left->x < right->x) {
-        initialValue = left;
-        left = left->prox;
-    } else {
-        initialValue = right;
-        right = right->prox;
-    }
-    lista_t * newList = initialValue;
-    newList->prox = NULL;
+    lista_t *right = divide(left);
 
-    //Percorre as listas adicionando o menor
-    while (left != NULL && right != NULL) {
-        if(left->x < right->x) {
-            newList->prox = left;
-            left = left->prox;
-        } else {
-            newList->prox = right;
-            right = right->prox;
-        }
-        newList = newList->prox;
-        newList->prox = NULL;
-    }
-
-    //Adiciona o restante que esteja sobrando na esquerda ou direita
-    while(left != NULL) {
-        newList->prox = left;
-        left = left->prox;
-        newList = newList->prox;
-        newList->prox = NULL;
-    }
-
-    while(right != NULL) {
-        newList->prox = right;
-        right = right->prox;
-        newList = newList->prox;
-        newList->prox = NULL;
-    }
-
-    left = initialValue;
-//    lista_imprime(left);
-//    lista_imprime(right);
-}
-
-void merge_sort_lista(lista_t *l) {
-    if(l == NULL || l->prox == NULL) return; //Condição de parada
-    unsigned int size = lista_tamanho(l);
-    unsigned int middle = size/2;
-    lista_t *left = l;
-
-    //Pega o último da esquerda, fala que o proximo é o começo da direita e aponta o proximo para null
-    lista_t* lastFromLeft = lista_encontra_no_por_posicao(l, (int)(middle - 1));
-    lista_t* right = lastFromLeft->prox;
-    lastFromLeft->prox = NULL;
-
-//    printf("Antes sort\n ");
-//    lista_imprime(left);
-//    lista_imprime(right);
-    merge_sort_lista(left);
-    merge_sort_lista(right);
-    merge_list(left, right);
-//    printf("Apos sort (left) = ");
-//
-//    lista_imprime(left);
-//    printf("Apos sort (right) = ");
-//    lista_imprime(right);
-
+    merge_sort_lista(&left);
+    merge_sort_lista(&right);
+    *l = merge_lista(left,right);
 }
